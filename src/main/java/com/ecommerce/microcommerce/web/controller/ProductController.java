@@ -2,6 +2,7 @@ package com.ecommerce.microcommerce.web.controller;
 
 import com.ecommerce.microcommerce.dao.ProductDao;
 import com.ecommerce.microcommerce.model.Product;
+import com.ecommerce.microcommerce.web.exceptions.ProduitGratuitException;
 import com.ecommerce.microcommerce.web.exceptions.ProduitIntrouvableException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
@@ -52,6 +53,11 @@ public class ProductController {
 
         Product productAdded =  productDao.save(product);
 
+        if(product.getPrix() <= 0)
+        {
+            throw new ProduitGratuitException("Le prix de vente ne peut pas être négatif ni égal à 0.");
+        }
+
         if (productAdded == null)
             return ResponseEntity.noContent().build();
 
@@ -73,9 +79,12 @@ public class ProductController {
     // Mettre à jour un produit
     @PostMapping(value = "/ModifierProduit")
     public void updateProduit(@RequestBody Product product) {
-        productDao.findById(product.getId()).setNom(product.getNom());
-        productDao.findById(product.getId()).setPrix(product.getPrix());
-        productDao.findById(product.getId()).setPrixAchat(product.getPrixAchat());
+
+        if(product.getPrix() <= 0)
+        {
+            throw new ProduitGratuitException("Le prix de vente ne peut pas être négatif ni égal à 0.");
+        }
+        productDao.save(product);
     }
 
 
