@@ -51,12 +51,12 @@ public class ProductController {
     @PostMapping(value = "/Produits")
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
 
-        Product productAdded =  productDao.save(product);
-
         if(product.getPrix() <= 0)
         {
             throw new ProduitGratuitException("Le prix de vente ne peut pas être négatif ni égal à 0.");
         }
+
+        Product productAdded =  productDao.save(product);
 
         if (productAdded == null)
             return ResponseEntity.noContent().build();
