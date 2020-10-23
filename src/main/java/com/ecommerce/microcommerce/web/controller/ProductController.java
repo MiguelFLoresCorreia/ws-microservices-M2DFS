@@ -84,7 +84,7 @@ public class ProductController {
     public List<Product>  testeDeRequetes(@PathVariable int prix) {
         return productDao.chercherUnProduitCher(400);
     }
-    
+
     @GetMapping(value = "/AdminProduits")
     public String calculerMargeProduit(){
 
@@ -95,6 +95,12 @@ public class ProductController {
             chaine = chaine + product.toString() + " : " + diffPrix + "<br>";
         }
         return chaine;
+    }
+
+    @GetMapping(value = "/TrierProduits")
+    public List<Product> trierProduitsParOrdreAlphabetique(){
+        List<Product> produits = productDao.findByOrderByNomAsc();
+        return produits;
     }
 
 }
