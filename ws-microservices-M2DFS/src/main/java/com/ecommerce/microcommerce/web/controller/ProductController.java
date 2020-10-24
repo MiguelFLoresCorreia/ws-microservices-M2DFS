@@ -73,7 +73,7 @@ public class ProductController {
     // supprimer un produit
     @RequestMapping(value = "/Produits/{id}", method = RequestMethod.DELETE)
     public void supprimerProduit(@PathVariable int id) {
-        productDao.delete(id);
+        productDao.deleteById(id);
     }
 
     // Mettre à jour un produit

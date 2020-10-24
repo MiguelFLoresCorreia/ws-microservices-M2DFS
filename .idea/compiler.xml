@@ -7,18 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CircuitBreaker" />
+        <module name="EurekaServer" />
         <module name="microcommerce" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CB" target="1.8" />
       <module name="CircuitBreaker" target="1.8" />
+      <module name="Eureka-Server" target="1.8" />
+      <module name="EurekaServer" target="1.8" />
       <module name="microcommerce" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CircuitBreaker" options="-parameters" />
+      <module name="Eureka-Server" options="" />
+      <module name="EurekaServer" options="-parameters" />
+      <module name="microcommerce" options="-parameters" />
     </option>
   </component>
 </project>
